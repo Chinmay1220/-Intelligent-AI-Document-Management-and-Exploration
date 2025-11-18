@@ -101,11 +101,6 @@ User Authentication: Adding authentication for secure access to sensitive resear
 WE ATTEST THAT WE HAVEN’T USED ANY OTHER STUDENTS’ WORK IN OUR 
 ASSIGNMENT AND ABIDE BY THE POLICIES LISTED IN THE STUDENT HANDBOOK
 
-| Name            | Contribution %                       |
-|------------------|-------------------------------------|
-| Shubham Agarwal  | 33.33 %                             |
-| Chinmay Sawant   | 33.34 %                             |
-| Pranav Sonje     | 33.33 %                             |
 
 **Documentation files Team_9** 
 
