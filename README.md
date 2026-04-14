@@ -1,113 +1,101 @@
 # RAG for Research AI: Intelligent Document Management and Exploration
 
-**Project Overview :** 
-The objective of this assignment is to create an end-to-end system for extracting, managing, and interacting with research publications from the CFA Institute Research Foundation, enabling users to explore and analyze information in a seamless and efficient manner. The system begins with an automated data ingestion pipeline, where publication data, including titles, summaries, images, and PDFs, is scraped and stored. The documents are organized in an AWS S3 bucket, while metadata and links are maintained in a Snowflake database for structured access. The ingestion process is automated through Airflow, ensuring that the data retrieval, storage, and database population are efficient, reliable, and scalable.Building on this foundation, a user-facing application is developed using FastAPI and Streamlit, allowing users to interact with the stored documents. Users can explore documents, generate summaries, and conduct Q&A sessions through a multi-modal Retrieval-Augmented Generation (RAG) model that leverages NVIDIA services for on-the-fly summaries and interactive querying. To facilitate document-specific insights, the system includes indexing and search functionalities, allowing users to search within research notes or full document text to extract meaningful information. To ensure accessibility and scalability, the entire application is containerized with Docker and deployed on a public cloud, offering a robust, user-friendly platform that supports efficient document exploration and enhances the research experience.
+An end-to-end platform for extracting, managing, and interacting with research publications from the CFA Institute Research Foundation — enabling users to explore, summarize, and query documents through a multi-modal RAG-powered interface.
 
+---
 
+## Overview
 
-**Key Technologies :**
+The system automates the ingestion of CFA Institute research publications (titles, summaries, images, PDFs) into AWS S3 and Snowflake, orchestrated via Apache Airflow. A FastAPI + Streamlit application sits on top, allowing users to browse documents, generate summaries, and conduct Q&A sessions using NVIDIA LLMs and OpenAI embeddings.
 
-AWS S3 , Snowflake , Streamlit, OpenAI, VS code, CodeLabs, Git, Docker, Python , FAISS , llama Index, Apache Airflow, FastAPI, Nvidia LLM
+---
 
-**Desired Outcome or Solution :**
+## Architecture
 
-The desired solution is a fully automated and interactive platform that allows for easy ingestion, storage, and retrieval of CFA Institute research publications.
-The system should include a pipeline for scraping, storing, and structuring data in AWS S3 and Snowflake, along with an interface built with FastAPI and Streamlit.
-Users should be able to browse documents, generate summaries, and conduct Q&A sessions using a multi-modal Retrieval-Augmented Generation (RAG) model.
-The platform should provide accurate, document-specific insights, support incremental indexing, and offer efficient search functionality, all accessible through a publicly deployed application.
+![Architecture Diagram](https://github.com/user-attachments/assets/8a6d5b50-4e06-4db7-84ad-2aaa9ac7643f)
 
-Components Overview:
+---
 
-Data Ingestion and Database Population
-Client-Facing Application using FastAPI and Streamlit
-Research Notes Indexing and Search
-Deployment and Accessibility
+## Key Features
 
-Tools and Technologies:
+- **Automated Data Ingestion** — Scrapes and stores publications in AWS S3 and Snowflake via Airflow pipelines
+- **Document Exploration** — Browse publications with metadata, images, and PDF access
+- **AI Summarization** — Real-time document summaries using NVIDIA's LLM API
+- **Q&A Interface** — Multi-modal Retrieval-Augmented Generation (RAG) using OpenAI
+- **Semantic Search** — FAISS and Llama Index for fast, accurate document retrieval
+- **Fully Containerized** — Docker + Docker Compose deployment on AWS EC2
 
-AWS S3: Storage for images and PDFs from CFA publications.
-Snowflake: For structured storage of metadata and processed data.
-Airflow: Pipeline automation and scheduling.
-FastAPI and Streamlit: Frontend for user interactions.
-Docker and Docker Compose: For containerization.
-Python and Dependencies (TOML managed): Backend scripting and AI integrations.
-NVIDIA Embeddings and OpenAI: For summaries and document embeddings.
-FAISS and Llama Index: For vector storage and indexing.
+---
 
-Client-Facing Application
-Components
+## Tech Stack
 
-FastAPI Endpoints:
-Users can explore available documents and query metadata.
-Streamlit UI:
-Provides options to browse documents with images and dropdown selection.
-Generates summaries and allows querying based on the user's input.
-Real-Time Summarization:
-Utilizes NVIDIA's API for dynamic summarization.
-Question-Answering (QA) Interface:
-Multi-modal retrieval and question-answering through OpenAI’s LLM.
+| Category | Tools |
+|---|---|
+| Storage | AWS S3, Snowflake |
+| Orchestration | Apache Airflow |
+| Backend | FastAPI, Python |
+| Frontend | Streamlit |
+| AI / Embeddings | OpenAI, NVIDIA LLM, FAISS, Llama Index |
+| DevOps | Docker, Docker Compose, AWS EC2 |
+| Version Control | Git |
 
-Code and Modules
+---
 
-api_Final.py: FastAPI backend to handle API requests and interact with Snowflake and S3.
-main_app.py: Streamlit frontend interface for the users.
+## Project Structure
 
-Research Notes Indexing and Search
-Functionality
+```
+├── api_Final.py          # FastAPI backend — handles API requests, Snowflake & S3 interactions
+├── main_app.py           # Streamlit frontend — user interface for browsing and querying
+├── Dockerfile.fastapi    # Docker build for FastAPI
+├── Dockerfile.streamlit  # Docker build for Streamlit
+├── docker-compose.yml    # Multi-container deployment
+└── airflow/              # Airflow DAGs for pipeline automation
+```
 
-Incremental Indexing and Storage:
+---
 
-Research notes are created based on QA results and indexed using FAISS and Llama Index for optimized retrieval.
-Search Capabilities:
+## How It Works
 
-Users can search notes and document text for detailed insights.
-Query results include both full documents and indexed research notes for enhanced relevance.
+### 1. Data Ingestion
+- Airflow DAGs scrape CFA Institute publications
+- PDFs and images are stored in AWS S3
+- Metadata and links are structured in Snowflake
 
-Approach
+### 2. Document Interaction
+- Users browse documents via Streamlit UI
+- FastAPI endpoints serve metadata and document content from Snowflake and S3
 
-FAISS for Vector Search: Fast and efficient similarity search.
-Llama Index: Manages indexes across various research notes.
+### 3. AI-Powered Q&A
+- Documents are embedded using NVIDIA and OpenAI services
+- FAISS handles vector similarity search
+- Llama Index manages incremental indexing across research notes
+- Users query documents in natural language and get accurate, context-aware answers
 
-Deployment and Accessibility
+### 4. Deployment
+- FastAPI and Streamlit are containerized via Docker
+- Deployed on AWS EC2 with public access
 
-Setup
-Containerization: FastAPI and Streamlit applications are containerized using Docker.
-Docker Compose: Deploys services to ensure seamless communication between backend and frontend.
+---
 
-Cloud Deployment on AWS EC2:
+## Getting Started
 
-Hosted on an EC2 instance with public access to the API and Streamlit application.
+```bash
+# Clone the repo
+git clone <your-repo-url>
+cd <repo-name>
 
-Docker Configuration
-Dockerfile.fastapi and Dockerfile.streamlit: Builds for FastAPI and Streamlit, respectively.
-docker-compose.yml: Manages multi-container deployment.
+# Set up environment variables
+cp .env.example .env
+# Add your AWS, Snowflake, OpenAI, and NVIDIA credentials
 
-Challenges and Future Enhancements
+# Run with Docker Compose
+docker-compose up --build
+```
 
-Handling Large Scale Data: Scaling S3 storage and Snowflake configurations for larger datasets.
-Enhanced QA with Contextual Understanding: Further refining the QA model using advanced embeddings.
-User Authentication: Adding authentication for secure access to sensitive research data.
+---
 
-**Architecture diagram :**
+## Resources
 
-![image](https://github.com/user-attachments/assets/8a6d5b50-4e06-4db7-84ad-2aaa9ac7643f)
-
-
-
-
-
-**Contribution :**
-
-WE ATTEST THAT WE HAVEN’T USED ANY OTHER STUDENTS’ WORK IN OUR 
-ASSIGNMENT AND ABIDE BY THE POLICIES LISTED IN THE STUDENT HANDBOOK
-
-
-**Documentation files Team_9** 
-
-**Code labs** - https://codelabs-preview.appspot.com/?file_id=11kd-nfh1II7Lafn1ePe5I9zrkUU2L0NpWWojPZNoMd0
-
-**Google Doc** - https://docs.google.com/document/d/11kd-nfh1II7Lafn1ePe5I9zrkUU2L0NpWWojPZNoMd0/edit?tab=t.0
-
-**Video** - https://drive.google.com/file/d/1h2B5IQ4b8CGPbwIMJDLo2LwEdr9p_9bD/view?usp=drive_link
-
-**Web Link** - http://10.110.35.159:8501 
+- [CodeLabs](https://codelabs-preview.appspot.com/?file_id=11kd-nfh1II7Lafn1ePe5I9zrkUU2L0NpWWojPZNoMd0)
+- [Documentation](https://docs.google.com/document/d/11kd-nfh1II7Lafn1ePe5I9zrkUU2L0NpWWojPZNoMd0/edit?tab=t.0)
+- [Demo Video](https://drive.google.com/file/d/1h2B5IQ4b8CGPbwIMJDLo2LwEdr9p_9bD/view?usp=drive_link)
