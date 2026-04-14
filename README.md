@@ -1,6 +1,6 @@
 # RAG for Research AI: Intelligent Document Management and Exploration
 
-An end-to-end platform for extracting, managing, and interacting with research publications from the CFA Institute Research Foundation — enabling users to explore, summarize, and query documents through a multi-modal RAG-powered interface.
+An end-to-end platform for extracting, managing, and interacting with research publications from the CFA Institute Research Foundation - enabling users to explore, summarize, and query documents through a multi-modal RAG-powered interface.
 
 ---
 
